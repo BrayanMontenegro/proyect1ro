@@ -15,7 +15,7 @@ import javax.swing.text.TableView;
  */
 public class NewJInternalFrameRegistroClientes extends javax.swing.JInternalFrame {
 
-    DefaultTableModel dtm = new DefaultTableModel();
+   DefaultTableModel modelo = new DefaultTableModel();
     /*** Creates new form NewJInternalFrameRegistroClientes
      */
     public NewJInternalFrameRegistroClientes() {
@@ -499,16 +499,14 @@ int id=Integer.parseInt((String)this.jTable_Cliente.getValueAt(fila, 0).toString
     }//GEN-LAST:event_jTextfiltrarMouseClicked
 
     private void jTextfiltrarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextfiltrarKeyTyped
-       
-       jTextfiltrar.addKeyListener(new KeyAdapter (){
-           @Override
-           public void keyReleased(KeyEvent Ke) {
-               trs.setRowFilter(RowFilter.regexFilter("(?i)"+jTextfiltrar.getText(), 1));
-               
-           }    
-       });
-       trs = new TableRowSorter(dtm);
-       jTable_Cliente.setRowSorter(trs);
+       jTextfiltrar.addKeyListener(new KeyAdapter() {
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<>(modelo);
+        jTable_Cliente.setRowSorter(trs);
+        trs.setRowFilter(RowFilter.regexFilter("(?i)" + jTextfiltrar.getText(), 1));
+    }
+});
        
     }//GEN-LAST:event_jTextfiltrarKeyTyped
    
